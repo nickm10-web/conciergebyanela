@@ -45,7 +45,7 @@ export default function Contact() {
 
       <section style={{ paddingTop: '6rem', paddingBottom: '8rem', backgroundColor: '#FAF8F5' }}>
         <div className="container-main">
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '6rem', '@media (min-width: 1024px)': { gridTemplateColumns: '1fr 1fr', gap: '6rem' } }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '6rem' }}>
             {/* Contact Info */}
             <div>
               <span style={{ fontSize: '0.75rem', letterSpacing: '0.3em', textTransform: 'uppercase', color: '#4B6B77', display: 'block', marginBottom: '1.5rem' }}>
