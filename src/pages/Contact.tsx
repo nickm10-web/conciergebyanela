@@ -1,0 +1,234 @@
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
+
+export default function Contact() {
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    confirmEmail: '',
+    phone: '',
+    howHeard: '',
+  })
+  const [submitted, setSubmitted] = useState(false)
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value })
+  }
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    setSubmitted(true)
+  }
+
+  return (
+    <>
+      {/* Hero */}
+      <section style={{ position: 'relative', height: '50vh', minHeight: '400px', display: 'flex', alignItems: 'flex-end' }}>
+        <div style={{ position: 'absolute', inset: 0 }}>
+          <img
+            src="/contact-hero.png"
+            alt="Contact us"
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+          />
+          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2), transparent)' }} />
+        </div>
+        <div style={{ position: 'relative', zIndex: 10, maxWidth: '80rem', margin: '0 auto', padding: '0 1.5rem', paddingBottom: '4rem', width: '100%' }}>
+          <span style={{ fontSize: '0.75rem', letterSpacing: '0.4em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.6)', display: 'block', marginBottom: '1rem' }}>
+            Contact
+          </span>
+          <h1 className="font-serif" style={{ fontSize: 'clamp(2rem, 5vw, 3.75rem)', color: 'white', fontWeight: 300 }}>
+            Get in <em className="italic">Touch</em>
+          </h1>
+        </div>
+      </section>
+
+      <section style={{ paddingTop: '6rem', paddingBottom: '8rem', backgroundColor: '#FAF8F5' }}>
+        <div className="container-main">
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '6rem', '@media (min-width: 1024px)': { gridTemplateColumns: '1fr 1fr', gap: '6rem' } }}>
+            {/* Contact Info */}
+            <div>
+              <span style={{ fontSize: '0.75rem', letterSpacing: '0.3em', textTransform: 'uppercase', color: '#4B6B77', display: 'block', marginBottom: '1.5rem' }}>
+                Let's Connect
+              </span>
+              <h2 className="font-serif" style={{ fontSize: 'clamp(1.5rem, 4vw, 2.25rem)', color: '#1A1A1A', fontWeight: 300, lineHeight: 1.2, marginBottom: '2rem' }}>
+                We'd love to hear from you
+              </h2>
+              <p style={{ color: '#3A3A3A', lineHeight: 1.6, marginBottom: '3rem' }}>
+                Whether you have a question about our services, want to discuss
+                a trip idea, or are ready to start planning, we're here to help.
+              </p>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+                <div>
+                  <h4 style={{ fontSize: '0.75rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(26,26,26,0.5)', marginBottom: '0.5rem' }}>Email</h4>
+                  <a href="mailto:anela@conciergebyanela.com" style={{ fontSize: '1.125rem', color: '#4B6B77', textDecoration: 'none', transition: 'color 0.3s ease' }} onMouseEnter={(e) => e.currentTarget.style.color = '#2C4A56'} onMouseLeave={(e) => e.currentTarget.style.color = '#4B6B77'}>
+                    anela@conciergebyanela.com
+                  </a>
+                </div>
+                <div>
+                  <h4 style={{ fontSize: '0.75rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(26,26,26,0.5)', marginBottom: '0.5rem' }}>Phone</h4>
+                  <a href="tel:8059523200" style={{ fontSize: '1.125rem', color: '#4B6B77', textDecoration: 'none', transition: 'color 0.3s ease' }} onMouseEnter={(e) => e.currentTarget.style.color = '#2C4A56'} onMouseLeave={(e) => e.currentTarget.style.color = '#4B6B77'}>
+                    805.952.3200
+                  </a>
+                </div>
+                <div>
+                  <h4 style={{ fontSize: '0.75rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(26,26,26,0.5)', marginBottom: '0.5rem' }}>Instagram</h4>
+                  <a
+                    href="https://instagram.com/conciergebyanela"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ fontSize: '1.125rem', color: '#4B6B77', textDecoration: 'none', transition: 'color 0.3s ease' }}
+                    onMouseEnter={(e) => e.currentTarget.style.color = '#2C4A56'}
+                    onMouseLeave={(e) => e.currentTarget.style.color = '#4B6B77'}
+                  >
+                    @conciergebyanela
+                  </a>
+                </div>
+              </div>
+
+              <div style={{ marginTop: '4rem', padding: '2rem', backgroundColor: '#F5F0E8', borderLeft: '2px solid #C4B198' }}>
+                <p className="font-serif" style={{ fontSize: '1.25rem', color: '#1A1A1A', fontStyle: 'italic', lineHeight: 1.6, marginBottom: '1rem' }}>
+                  Looking to book a full consultation?
+                </p>
+                <Link
+                  to="/book"
+                  className="link-underline"
+                  style={{ fontSize: '0.75rem', letterSpacing: '0.25em', textTransform: 'uppercase', color: '#4B6B77', textDecoration: 'none', display: 'inline-block', paddingBottom: '0.25rem' }}
+                >
+                  Book Your Complimentary Consultation Call
+                </Link>
+              </div>
+            </div>
+
+            {/* Contact Form */}
+            <div>
+              {submitted ? (
+                <div style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '3rem', backgroundColor: '#F5F0E8' }}>
+                  <div>
+                    <h3 className="font-serif" style={{ fontSize: '1.875rem', color: '#1A1A1A', marginBottom: '1rem' }}>Thank You</h3>
+                    <p style={{ color: '#3A3A3A' }}>
+                      We've received your message and will be in touch shortly.
+                    </p>
+                  </div>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1.5rem' }}>
+                    <div>
+                      <label style={{ fontSize: '0.75rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(26,26,26,0.6)', display: 'block', marginBottom: '0.5rem' }}>
+                        First Name *
+                      </label>
+                      <input
+                        type="text"
+                        name="firstName"
+                        required
+                        value={formData.firstName}
+                        onChange={handleChange}
+                        style={{ width: '100%', padding: '0', paddingBottom: '0.75rem', backgroundColor: 'transparent', border: 'none', borderBottom: '1px solid rgba(26,26,26,0.2)', color: '#1A1A1A', fontSize: '1rem', transition: 'border-color 0.3s ease', outline: 'none' }}
+                        onFocus={(e) => e.target.style.borderColor = '#4B6B77'}
+                        onBlur={(e) => e.target.style.borderColor = 'rgba(26,26,26,0.2)'}
+                      />
+                    </div>
+                    <div>
+                      <label style={{ fontSize: '0.75rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(26,26,26,0.6)', display: 'block', marginBottom: '0.5rem' }}>
+                        Last Name *
+                      </label>
+                      <input
+                        type="text"
+                        name="lastName"
+                        required
+                        value={formData.lastName}
+                        onChange={handleChange}
+                        style={{ width: '100%', padding: '0', paddingBottom: '0.75rem', backgroundColor: 'transparent', border: 'none', borderBottom: '1px solid rgba(26,26,26,0.2)', color: '#1A1A1A', fontSize: '1rem', transition: 'border-color 0.3s ease', outline: 'none' }}
+                        onFocus={(e) => e.target.style.borderColor = '#4B6B77'}
+                        onBlur={(e) => e.target.style.borderColor = 'rgba(26,26,26,0.2)'}
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label style={{ fontSize: '0.75rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(26,26,26,0.6)', display: 'block', marginBottom: '0.5rem' }}>
+                      Email Address *
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      required
+                      value={formData.email}
+                      onChange={handleChange}
+                      style={{ width: '100%', padding: '0', paddingBottom: '0.75rem', backgroundColor: 'transparent', border: 'none', borderBottom: '1px solid rgba(26,26,26,0.2)', color: '#1A1A1A', fontSize: '1rem', transition: 'border-color 0.3s ease', outline: 'none' }}
+                      onFocus={(e) => e.target.style.borderColor = '#4B6B77'}
+                      onBlur={(e) => e.target.style.borderColor = 'rgba(26,26,26,0.2)'}
+                    />
+                  </div>
+
+                  <div>
+                    <label style={{ fontSize: '0.75rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(26,26,26,0.6)', display: 'block', marginBottom: '0.5rem' }}>
+                      Confirm Email *
+                    </label>
+                    <input
+                      type="email"
+                      name="confirmEmail"
+                      required
+                      value={formData.confirmEmail}
+                      onChange={handleChange}
+                      style={{ width: '100%', padding: '0', paddingBottom: '0.75rem', backgroundColor: 'transparent', border: 'none', borderBottom: '1px solid rgba(26,26,26,0.2)', color: '#1A1A1A', fontSize: '1rem', transition: 'border-color 0.3s ease', outline: 'none' }}
+                      onFocus={(e) => e.target.style.borderColor = '#4B6B77'}
+                      onBlur={(e) => e.target.style.borderColor = 'rgba(26,26,26,0.2)'}
+                    />
+                  </div>
+
+                  <div>
+                    <label style={{ fontSize: '0.75rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(26,26,26,0.6)', display: 'block', marginBottom: '0.5rem' }}>
+                      Phone Number
+                    </label>
+                    <input
+                      type="tel"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      style={{ width: '100%', padding: '0', paddingBottom: '0.75rem', backgroundColor: 'transparent', border: 'none', borderBottom: '1px solid rgba(26,26,26,0.2)', color: '#1A1A1A', fontSize: '1rem', transition: 'border-color 0.3s ease', outline: 'none' }}
+                      onFocus={(e) => e.target.style.borderColor = '#4B6B77'}
+                      onBlur={(e) => e.target.style.borderColor = 'rgba(26,26,26,0.2)'}
+                    />
+                  </div>
+
+                  <div>
+                    <label style={{ fontSize: '0.75rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(26,26,26,0.6)', display: 'block', marginBottom: '0.5rem' }}>
+                      How Did You Hear About Us?
+                    </label>
+                    <select
+                      name="howHeard"
+                      value={formData.howHeard}
+                      onChange={handleChange}
+                      style={{ width: '100%', padding: '0', paddingBottom: '0.75rem', backgroundColor: 'transparent', border: 'none', borderBottom: '1px solid rgba(26,26,26,0.2)', color: '#1A1A1A', fontSize: '1rem', transition: 'border-color 0.3s ease', outline: 'none', appearance: 'none', cursor: 'pointer' }}
+                      onFocus={(e) => e.currentTarget.style.borderColor = '#4B6B77'}
+                      onBlur={(e) => e.currentTarget.style.borderColor = 'rgba(26,26,26,0.2)'}
+                    >
+                      <option value="">Select an option</option>
+                      <option value="instagram">Instagram</option>
+                      <option value="referral">Referral from a friend</option>
+                      <option value="google">Google search</option>
+                      <option value="event">Event or partnership</option>
+                      <option value="other">Other</option>
+                    </select>
+                  </div>
+
+                  <button
+                    type="submit"
+                    style={{ marginTop: '2rem', padding: '1rem 3rem', backgroundColor: '#4B6B77', color: 'white', fontSize: '0.75rem', letterSpacing: '0.25em', textTransform: 'uppercase', border: 'none', cursor: 'pointer', transition: 'background-color 0.3s ease', width: 'fit-content' }}
+                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#2C4A56'}
+                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#4B6B77'}
+                  >
+                    Send Message
+                  </button>
+                </form>
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
+  )
+}
