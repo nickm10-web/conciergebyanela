@@ -4,56 +4,52 @@ export default function About() {
   return (
     <>
       {/* Hero */}
-      <section style={{ position: 'relative', height: '60vh', minHeight: '450px', display: 'flex', alignItems: 'flex-end' }}>
-        <div style={{ position: 'absolute', inset: 0 }}>
+      <section className="relative h-[40vh] min-h-[300px] md:h-[60vh] md:min-h-[450px] flex items-end">
+        <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1920&q=80"
-            alt="Elegant villa with palm trees"
-            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            src="/about-hero.png"
+            alt="About Anela"
+            className="w-full h-full object-cover"
           />
-          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2), transparent)' }} />
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2), transparent)' }} />
         </div>
-        <div className="container-main" style={{ position: 'relative', zIndex: 10, paddingBottom: '4rem', width: '100%' }}>
-          <span style={{ fontSize: '0.75rem', letterSpacing: '0.4em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.6)', display: 'block', marginBottom: '1rem' }}>
+        <div className="container-main relative z-10 pb-8 md:pb-16 w-full">
+          <span className="text-xs tracking-[0.4em] uppercase text-white/60 block mb-4">
             About
           </span>
-          <h1 className="font-serif" style={{ fontSize: 'clamp(2rem, 10vw, 3.5rem)', color: 'white', fontWeight: 300 }}>
+          <h1 className="font-serif text-white font-light" style={{ fontSize: 'clamp(2rem, 10vw, 3.5rem)' }}>
             The Story Behind <em className="italic">the Journey</em>
           </h1>
         </div>
       </section>
 
       {/* Main Content */}
-      <section style={{ paddingTop: '6rem', paddingBottom: '6rem', backgroundColor: '#FAF8F5' }}>
+      <section className="py-12 md:py-24" style={{ backgroundColor: '#FAF8F5' }}>
         <div className="container-main">
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '4rem', alignItems: 'start' }}>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 items-start">
             {/* Image */}
-            <div style={{ position: 'sticky', top: '2rem' }}>
+            <div className="lg:sticky lg:top-8">
               <div className="img-zoom">
                 <img
-                  src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800&q=80"
-                  alt="Luxury resort infinity pool overlooking mountains"
-                  style={{ width: '100%', height: '600px', objectFit: 'cover' }}
+                  src="/about-vineyard.jpeg"
+                  alt="Anela at a vineyard wine tasting"
+                  className="w-full h-[380px] sm:h-[420px] md:h-[500px] lg:h-[600px] object-cover"
+                  style={{ objectPosition: 'center top' }}
                 />
               </div>
             </div>
 
             {/* Text */}
-            <div style={{ paddingTop: '2rem' }}>
-              <span style={{ fontSize: '0.75rem', letterSpacing: '0.3em', textTransform: 'uppercase', color: '#4B6B77', display: 'block', marginBottom: '1.5rem' }}>
+            <div className="pt-0 lg:pt-8">
+              <span className="text-xs tracking-[0.3em] uppercase block mb-6" style={{ color: '#4B6B77' }}>
                 Meet Anela
               </span>
-              <h2 className="font-serif" style={{ fontSize: 'clamp(1.75rem, 5vw, 2.25rem)', color: '#1A1A1A', fontWeight: 300, lineHeight: 1.2, marginBottom: '2rem' }}>
+              <h2 className="font-serif font-light mb-8" style={{ fontSize: 'clamp(1.75rem, 5vw, 2.25rem)', color: '#1A1A1A', lineHeight: 1.2 }}>
                 A passion for creating{' '}
                 <em className="italic">unforgettable experiences</em>
               </h2>
 
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', color: '#3A3A3A', lineHeight: 1.6 }}>
-                <p>
-                  My mission is to coordinate personalized, seamless, luxury travel
-                  experiences with concierge-level service, giving clients effortless,
-                  memorable journeys anywhere in the world.
-                </p>
+              <div className="flex flex-col gap-6" style={{ color: '#3A3A3A', lineHeight: 1.6 }}>
                 <p>
                   I am a passionate hospitality professional with over five years in
                   luxury hospitality, travel, and wine. I have lived in and travelled
@@ -67,7 +63,7 @@ export default function About() {
               </div>
 
               {/* Values */}
-              <div style={{ marginTop: '4rem', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '2rem' }}>
+              <div className="mt-12 md:mt-16 grid grid-cols-1 sm:grid-cols-2 gap-8">
                 {[
                   {
                     title: 'Discretion',
@@ -87,21 +83,41 @@ export default function About() {
                   },
                 ].map((value) => (
                   <div key={value.title}>
-                    <h3 className="font-serif" style={{ fontSize: '1.25rem', color: '#1A1A1A', marginBottom: '0.5rem' }}>{value.title}</h3>
-                    <p style={{ fontSize: '0.875rem', color: '#3A3A3A', lineHeight: 1.6 }}>{value.text}</p>
+                    <h3 className="font-serif text-xl mb-2" style={{ color: '#1A1A1A' }}>{value.title}</h3>
+                    <p className="text-sm" style={{ color: '#3A3A3A', lineHeight: 1.6 }}>{value.text}</p>
                   </div>
                 ))}
               </div>
 
-              <div style={{ marginTop: '4rem', padding: '2rem', backgroundColor: '#F5F0E8', borderLeft: '2px solid #C4B198' }}>
-                <p className="font-serif" style={{ fontSize: '1.25rem', color: '#1A1A1A', fontStyle: 'italic', lineHeight: 1.6 }}>
+              <div className="mt-12 md:mt-16 p-6 md:p-8 border-l-2" style={{ backgroundColor: '#F5F0E8', borderColor: '#C4B198' }}>
+                <p className="font-serif text-lg md:text-xl italic" style={{ color: '#1A1A1A', lineHeight: 1.6 }}>
                   "I believe luxury travel should feel effortless. My role is to handle every detail so you can simply arrive, exhale, and enjoy."
                 </p>
               </div>
 
+              {/* Photo strip */}
+              <div className="mt-10 md:mt-12 grid grid-cols-2 gap-3">
+                <div className="img-zoom">
+                  <img
+                    src="/about-hotel.jpeg"
+                    alt="Luxury hotel interior"
+                    className="w-full h-[160px] sm:h-[200px] object-cover"
+                  />
+                </div>
+                <div className="img-zoom">
+                  <img
+                    src="/about-rome.jpeg"
+                    alt="Anela at the Trevi Fountain, Rome"
+                    className="w-full h-[160px] sm:h-[200px] object-cover"
+                    style={{ objectPosition: 'center bottom' }}
+                  />
+                </div>
+              </div>
+
               <Link
                 to="/book"
-                style={{ display: 'inline-block', marginTop: '3rem', paddingLeft: '2.5rem', paddingRight: '2.5rem', paddingTop: '1rem', paddingBottom: '1rem', backgroundColor: '#4B6B77', color: 'white', fontSize: '0.75rem', letterSpacing: '0.25em', textTransform: 'uppercase', transition: 'background-color 0.3s', cursor: 'pointer', textDecoration: 'none' }}
+                className="inline-block mt-10 md:mt-12 px-8 md:px-10 py-4 text-xs tracking-[0.25em] uppercase text-white no-underline transition-colors duration-300"
+                style={{ backgroundColor: '#4B6B77' }}
                 onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#2C4A56'}
                 onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#4B6B77'}
               >

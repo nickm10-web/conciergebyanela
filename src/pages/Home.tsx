@@ -19,18 +19,6 @@ const services = [
   },
 ]
 
-const testimonials = [
-  {
-    quote: "Anela transformed our anniversary trip into something beyond what we could have imagined. Every detail was flawless.",
-    author: "Sarah & Michael",
-    location: "Amalfi Coast, Italy"
-  },
-  {
-    quote: "The level of personal attention and insider access is unlike anything I've experienced. Truly a white-glove service.",
-    author: "James R.",
-    location: "Tokyo, Japan"
-  },
-]
 
 export default function Home() {
   return (
@@ -89,26 +77,27 @@ export default function Home() {
               to="/services"
               style={{
                 padding: '0.875rem 3rem',
-                border: '1px solid rgba(255,255,255,0.3)',
-                backgroundColor: 'rgba(255,255,255,0.15)',
+                border: '1px solid rgba(255,255,255,0.8)',
+                backgroundColor: 'rgba(255,255,255,0.18)',
                 backdropFilter: 'blur(32px)',
                 WebkitBackdropFilter: 'blur(32px)',
                 color: 'white',
                 fontSize: '0.65rem',
-                fontWeight: 400,
+                fontWeight: 500,
                 letterSpacing: '0.3em',
                 textTransform: 'uppercase',
                 textDecoration: 'none',
                 textAlign: 'center',
                 transition: 'all 0.4s ease',
+                textShadow: '0 1px 4px rgba(0,0,0,0.4)',
               }}
               onMouseOver={e => {
-                e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.25)'
-                e.currentTarget.style.borderColor = 'rgba(255,255,255,0.5)'
+                e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.3)'
+                e.currentTarget.style.borderColor = 'rgba(255,255,255,1)'
               }}
               onMouseOut={e => {
-                e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.12)'
-                e.currentTarget.style.borderColor = 'rgba(255,255,255,0.3)'
+                e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.18)'
+                e.currentTarget.style.borderColor = 'rgba(255,255,255,0.8)'
               }}
             >
               Explore Services
@@ -143,14 +132,9 @@ export default function Home() {
                 <em style={{ fontStyle: 'italic' }}>personally curated</em>
               </h2>
               <p style={{ marginTop: '1.5rem', color: '#3A3A3A', lineHeight: 1.7 }}>
-                I'm a passionate hospitality professional with over five years in
-                luxury hospitality, travel, and wine. Having lived in and travelled
-                to some of the most sought-out destinations, I bring firsthand
-                knowledge and genuine care to every experience I create.
-              </p>
-              <p style={{ marginTop: '1rem', color: '#3A3A3A', lineHeight: 1.7 }}>
-                I curate seamless, personalized luxury travel experiences so my
-                clients can explore the world effortlessly and with complete confidence.
+                Our mission is to coordinate personalized, seamless, luxury travel
+                experiences with concierge-level service, giving clients effortless,
+                memorable journeys anywhere in the world.
               </p>
               <Link
                 to="/about"
@@ -198,45 +182,6 @@ export default function Home() {
                   Learn more
                 </span>
               </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonial */}
-      <section style={{ paddingTop: '6rem', paddingBottom: '6rem', backgroundColor: '#2C4A56' }}>
-        <div className="container-main">
-          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-            <span style={{ fontSize: '0.75rem', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)', display: 'block', marginBottom: '1rem' }}>
-              Client Experiences
-            </span>
-            <div style={{ width: '3rem', height: '1px', backgroundColor: 'rgba(255,255,255,0.2)', margin: '0 auto' }} />
-          </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '2rem' }}>
-            {testimonials.map((t, i) => (
-              <blockquote key={i} style={{
-                padding: '3rem',
-                backgroundColor: 'white',
-                border: '1px solid rgba(196,177,152,0.3)',
-                textAlign: 'center',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-              }}>
-                <div style={{ fontSize: '3rem', lineHeight: 1, color: '#C4B198', marginBottom: '1.5rem', fontFamily: 'Georgia, serif' }}>"</div>
-                <p className="font-serif" style={{ fontSize: 'clamp(1.1rem, 2vw, 1.35rem)', fontWeight: 300, lineHeight: 1.6, fontStyle: 'italic', color: '#1A1A1A' }}>
-                  {t.quote}
-                </p>
-                <footer style={{ marginTop: '2rem' }}>
-                  <div style={{ width: '2rem', height: '1px', backgroundColor: '#C4B198', margin: '0 auto 1rem' }} />
-                  <cite style={{ fontStyle: 'normal', fontSize: '0.8rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#3A3A3A', fontWeight: 500 }}>
-                    {t.author}
-                  </cite>
-                  <div style={{ fontSize: '0.75rem', color: 'rgba(58,58,58,0.5)', marginTop: '0.25rem', letterSpacing: '0.1em' }}>
-                    {t.location}
-                  </div>
-                </footer>
-              </blockquote>
             ))}
           </div>
         </div>

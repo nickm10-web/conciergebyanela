@@ -24,20 +24,20 @@ export default function Contact() {
   return (
     <>
       {/* Hero */}
-      <section style={{ position: 'relative', height: '50vh', minHeight: '400px', display: 'flex', alignItems: 'flex-end' }}>
-        <div style={{ position: 'absolute', inset: 0 }}>
+      <section className="relative h-[40vh] min-h-[300px] md:h-[60vh] md:min-h-[450px] flex items-end">
+        <div className="absolute inset-0">
           <img
             src="/contact-hero.png"
-            alt="Contact us"
-            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            alt="Contact"
+            className="w-full h-full object-cover"
           />
-          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2), transparent)' }} />
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2), transparent)' }} />
         </div>
-        <div style={{ position: 'relative', zIndex: 10, maxWidth: '80rem', margin: '0 auto', padding: '0 1.5rem', paddingBottom: '4rem', width: '100%' }}>
-          <span style={{ fontSize: '0.75rem', letterSpacing: '0.4em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.6)', display: 'block', marginBottom: '1rem' }}>
+        <div className="container-main relative z-10 pb-8 md:pb-16 w-full">
+          <span className="text-xs tracking-[0.4em] uppercase text-white/60 block mb-4">
             Contact
           </span>
-          <h1 className="font-serif" style={{ fontSize: 'clamp(2rem, 5vw, 3.75rem)', color: 'white', fontWeight: 300 }}>
+          <h1 className="font-serif text-white font-light" style={{ fontSize: 'clamp(2rem, 5vw, 3.75rem)' }}>
             Get in <em className="italic">Touch</em>
           </h1>
         </div>

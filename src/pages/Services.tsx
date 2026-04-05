@@ -12,7 +12,6 @@ const serviceCategories = [
       'Yacht charters & exclusive excursions',
     ],
     image: '/service-travel-jet.png',
-    description: 'From the first flight to the final sunset, every detail of your journey is meticulously planned and flawlessly executed.',
   },
   {
     title: 'Dining & Culinary',
@@ -23,7 +22,6 @@ const serviceCategories = [
       'Private chef arrangements',
     ],
     image: '/service-dining-alt.png',
-    description: 'Access to the world\'s most coveted tables, exclusive tastings, and culinary journeys that awaken the senses.',
   },
   {
     title: 'Events & Celebrations',
@@ -34,7 +32,6 @@ const serviceCategories = [
       'Private gatherings',
     ],
     image: '/service-events-alt.png',
-    description: 'Whether an intimate dinner for two or a grand celebration, we bring your vision to life in extraordinary settings.',
   },
   {
     title: 'Lifestyle & Wellness',
@@ -45,7 +42,6 @@ const serviceCategories = [
       'On-trip messaging support',
     ],
     image: '/service-lifestyle.png',
-    description: 'Spa retreats, wellness escapes, and personal lifestyle requests handled with care and discretion.',
   },
   {
     title: 'Ongoing Concierge',
@@ -56,7 +52,6 @@ const serviceCategories = [
       'Dedicated lifestyle support',
     ],
     image: '/service-ongoing.png',
-    description: 'For those who desire a trusted partner in luxury living — always available, always anticipating your needs.',
   },
 ]
 
@@ -64,20 +59,20 @@ export default function Services() {
   return (
     <>
       {/* Hero */}
-      <section style={{ position: 'relative', height: '60vh', minHeight: '450px', display: 'flex', alignItems: 'flex-end' }}>
-        <div style={{ position: 'absolute', inset: 0 }}>
+      <section className="relative h-[40vh] min-h-[300px] md:h-[60vh] md:min-h-[450px] flex items-end">
+        <div className="absolute inset-0">
           <img
             src="/services-hero.png"
             alt="Services"
-            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            className="w-full h-full object-cover"
           />
-          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2), transparent)' }} />
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2), transparent)' }} />
         </div>
-        <div style={{ position: 'relative', zIndex: 10, maxWidth: '80rem', margin: '0 auto', padding: '0 1.5rem', paddingBottom: '4rem', width: '100%' }}>
-          <span style={{ fontSize: '0.75rem', letterSpacing: '0.4em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.6)', display: 'block', marginBottom: '1rem' }}>
+        <div className="container-main relative z-10 pb-8 md:pb-16 w-full">
+          <span className="text-xs tracking-[0.4em] uppercase text-white/60 block mb-4">
             Services
           </span>
-          <h1 className="font-serif" style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', color: 'white', fontWeight: 300 }}>
+          <h1 className="font-serif text-white font-light" style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)' }}>
             What We <em className="italic">Offer</em>
           </h1>
         </div>
@@ -89,7 +84,7 @@ export default function Services() {
           <SectionHeading
             label="Our Services"
             title="Stress-Free, Fully Tailored"
-            subtitle="Our services are designed for individuals who value discretion, efficiency, and elevated experiences. Every experience is fully tailored to your needs."
+            subtitle="Our services are thoughtfully designed for individuals who value discretion, efficiency, and truly elevated experiences. Every journey is fully tailored to your unique preferences, ensuring seamless execution from the first flight to the final sunset. We help you curate unforgettable moments. Whether planning an intimate dinner for two or a grand celebration in an extraordinary setting, we bring your vision to life with precision and care. From restorative spa retreats and wellness escapes to personal lifestyle requests, every detail is handled with the utmost attention and confidentiality. For those who seek a trusted partner in luxury living and travel, we remain dedicated, discreet, and always one step ahead — anticipating your needs before you even have to ask."
           />
         </div>
       </section>
@@ -110,12 +105,9 @@ export default function Services() {
                 />
               </div>
               <div style={{ order: i % 2 !== 0 ? 1 : 2 }}>
-                <h3 className="font-serif" style={{ fontSize: 'clamp(1.5rem, 4vw, 2.25rem)', color: '#1A1A1A', fontWeight: 300, marginBottom: '1rem' }}>
+                <h3 className="font-serif" style={{ fontSize: 'clamp(1.5rem, 4vw, 2.25rem)', color: '#1A1A1A', fontWeight: 300, marginBottom: '2rem' }}>
                   {cat.title}
                 </h3>
-                <p style={{ color: '#3A3A3A', lineHeight: 1.7, marginBottom: '2rem' }}>
-                  {cat.description}
-                </p>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
                   {cat.services.map((service) => (
                     <div
