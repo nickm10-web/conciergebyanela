@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { submitForm } from '../lib/submitForm'
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -11,14 +12,41 @@ export default function Contact() {
     howHeard: '',
   })
   const [submitted, setSubmitted] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setSubmitted(true)
+    if (formData.email !== formData.confirmEmail) {
+      setError('Email addresses do not match.')
+      return
+    }
+    setError(null)
+    setLoading(true)
+    try {
+      await submitForm(
+        {
+          'First Name': formData.firstName,
+          'Last Name': formData.lastName,
+          Email: formData.email,
+          Phone: formData.phone,
+          'How They Heard': formData.howHeard,
+        },
+        'New contact form inquiry — Concierge by Anela'
+      )
+      setSubmitted(true)
+    } catch (err) {
+      console.error(err)
+      setError(
+        'Something went wrong sending your message. Please email us directly at anela@conciergebyanela.com.'
+      )
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -215,13 +243,19 @@ export default function Contact() {
                     </select>
                   </div>
 
+                  {error && (
+                    <p style={{ color: '#B0453A', fontSize: '0.875rem', lineHeight: 1.5, marginTop: '0.5rem' }}>
+                      {error}
+                    </p>
+                  )}
                   <button
                     type="submit"
-                    style={{ marginTop: '2rem', padding: '1rem 3rem', backgroundColor: '#4B6B77', color: 'white', fontSize: '0.75rem', letterSpacing: '0.25em', textTransform: 'uppercase', border: 'none', cursor: 'pointer', transition: 'background-color 0.3s ease', width: 'fit-content' }}
-                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#2C4A56'}
-                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#4B6B77'}
+                    disabled={loading}
+                    style={{ marginTop: '2rem', padding: '1rem 3rem', backgroundColor: loading ? '#8BA3AC' : '#4B6B77', color: 'white', fontSize: '0.75rem', letterSpacing: '0.25em', textTransform: 'uppercase', border: 'none', cursor: loading ? 'not-allowed' : 'pointer', transition: 'background-color 0.3s ease', width: 'fit-content' }}
+                    onMouseEnter={(e) => { if (!loading) e.currentTarget.style.backgroundColor = '#2C4A56' }}
+                    onMouseLeave={(e) => { if (!loading) e.currentTarget.style.backgroundColor = '#4B6B77' }}
                   >
-                    Send Message
+                    {loading ? 'Sending…' : 'Send Message'}
                   </button>
                 </form>
               )}

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { submitForm } from '../lib/submitForm'
 
 const serviceOptions = [
   'Custom travel planning',
@@ -39,6 +40,8 @@ export default function BookConsultation() {
     experienceTypes: [] as string[],
   })
   const [submitted, setSubmitted] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -53,9 +56,34 @@ export default function BookConsultation() {
     }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setSubmitted(true)
+    setError(null)
+    setLoading(true)
+    try {
+      await submitForm(
+        {
+          'Full Name': formData.fullName,
+          Email: formData.email,
+          Phone: formData.phone,
+          'Preferred Contact Method': formData.preferredContact,
+          'Services of Interest': formData.services.join(', '),
+          'Location & Destination': formData.location,
+          'Travel Dates': formData.travelDates,
+          'Party Size': formData.partySize,
+          'Experience Types': formData.experienceTypes.join(', '),
+        },
+        'New consultation booking request — Concierge by Anela'
+      )
+      setSubmitted(true)
+    } catch (err) {
+      console.error(err)
+      setError(
+        'Something went wrong sending your request. Please email us directly at anela@conciergebyanela.com.'
+      )
+    } finally {
+      setLoading(false)
+    }
   }
 
   if (submitted) {
@@ -485,24 +513,30 @@ export default function BookConsultation() {
 
             {/* Submit */}
             <div style={{ paddingTop: '2rem', textAlign: 'center' }}>
+              {error && (
+                <p style={{ color: '#B0453A', fontSize: '0.875rem', lineHeight: 1.5, marginBottom: '1.5rem' }}>
+                  {error}
+                </p>
+              )}
               <button
                 type="submit"
+                disabled={loading}
                 style={{
                   padding: '1rem 4rem',
-                  backgroundColor: '#4B6B77',
+                  backgroundColor: loading ? '#8BA3AC' : '#4B6B77',
                   color: 'white',
                   fontSize: '0.75rem',
                   letterSpacing: '0.25em',
                   fontWeight: '600',
                   textTransform: 'uppercase',
                   border: 'none',
-                  cursor: 'pointer',
+                  cursor: loading ? 'not-allowed' : 'pointer',
                   transition: 'background-color 0.3s'
                 }}
-                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#2C4A56'}
-                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#4B6B77'}
+                onMouseEnter={(e) => { if (!loading) e.currentTarget.style.backgroundColor = '#2C4A56' }}
+                onMouseLeave={(e) => { if (!loading) e.currentTarget.style.backgroundColor = '#4B6B77' }}
               >
-                Book Now
+                {loading ? 'Sending…' : 'Book Now'}
               </button>
               <p style={{ marginTop: '1.5rem', fontSize: '0.875rem', color: 'rgba(58,58,58,0.6)' }}>
                 Once your inquiry is received, you will hear from me within 24–48 hours.
